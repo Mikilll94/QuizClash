@@ -5,5 +5,5 @@
 
 <h2>Question nr @Html.Raw(ViewBag.questionNum)</h2>
 
-<button onclick="window.location.href='@Url.Action("Question//5","Home")'">Submit</button>
-
+<button onclick="window.location.href='@Url.Action("Question//" +
+        @Html.Raw(ViewBag.questionNum + 1),"Home")'">Submit</button>
