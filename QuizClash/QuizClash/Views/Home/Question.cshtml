@@ -1,0 +1,9 @@
+﻿
+@{
+    ViewBag.Title = "Question";
+}
+
+<h2>Question nr @Html.Raw(ViewBag.questionNum)</h2>
+
+<button onclick="window.location.href='@Url.Action("Question//5","Home")'">Submit</button>
+
