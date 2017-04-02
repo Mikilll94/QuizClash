@@ -1,0 +1,21 @@
+﻿@model IEnumerable<QuizClash.Models.Question>
+
+@{
+    ViewBag.Title = "Question";
+    string Content = Model.ToList()[0].Content;
+    string AnswerA = Model.ToList()[0].AnswerA;
+    string AnswerB = Model.ToList()[0].AnswerB;
+    string AnswerC = Model.ToList()[0].AnswerC;
+    string AnswerD = Model.ToList()[0].AnswerD;
+}
+
+<h2>Question nr @Html.Raw(ViewBag.questionNum)</h2>
+
+<p>@Content</p>
+<p>A: @AnswerA</p>
+<p>B: @AnswerB</p>
+<p>C: @AnswerC</p>
+<p>D: @AnswerD</p>
+
+<button onclick="window.location.href='@Url.Action("Single//" +
+        @Html.Raw(ViewBag.questionNum + 1),"Questions")'">Submit</button>

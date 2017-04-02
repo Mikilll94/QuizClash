@@ -13,12 +13,6 @@ namespace QuizClash.Controllers
             return View();
         }
 
-        public ActionResult Question(int id)
-        {
-            ViewBag.questionNum = id;
-            return View();
-        }
-
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

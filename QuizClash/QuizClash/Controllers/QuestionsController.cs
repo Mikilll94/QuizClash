@@ -20,6 +20,14 @@ namespace QuizClash
             return View(db.Questions.ToList());
         }
 
+        public ActionResult Single(int id)
+        {
+            ViewBag.questionNum = id;
+            Random rand = new Random();
+            int randomQuestionNr = rand.Next(1, 3 + 1);
+            return View(db.Questions.Where(x => x.Id == randomQuestionNr).ToList());
+        }
+
         // GET: Questions/Details/5
         public ActionResult Details(int? id)
         {
