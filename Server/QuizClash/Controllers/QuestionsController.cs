@@ -25,7 +25,7 @@ namespace QuizClash
             ViewBag.questionNum = id;
             Random rand = new Random();
             int randomQuestionNr = rand.Next(1, 3 + 1);
-            return View(db.Questions.Where(x => x.Id == randomQuestionNr).ToList());
+            return View(db.Questions.Find(randomQuestionNr));
         }
 
         public ActionResult End()

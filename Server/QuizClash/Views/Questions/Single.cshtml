@@ -1,16 +1,8 @@
 ﻿@Scripts.Render("~/bundles/jquery")
-@model IEnumerable<QuizClash.Models.Question>
+@model QuizClash.Models.Question
 
 @{
     ViewBag.Title = "Question";
-    string Content = Model.ToList()[0].Content;
-    string AnswerA = Model.ToList()[0].AnswerA;
-    string AnswerB = Model.ToList()[0].AnswerB;
-    string AnswerC = Model.ToList()[0].AnswerC;
-    string AnswerD = Model.ToList()[0].AnswerD;
-    int CorrectAnswer = Model.ToList()[0].CorrectAnswer;
-
-    bool answered = false;
 }
 
 <style>
@@ -31,7 +23,7 @@
         });
 
         $('.submit').click(function() {
-            $('.answer > div').eq(@CorrectAnswer-1).addClass('correct');
+            $('.answer > div').eq(@Model.CorrectAnswer-1).addClass('correct');
             $('.next_question').show();
             $('.submit').hide();
         });
@@ -40,12 +32,12 @@
 
 <h2>Question nr @Html.Raw(ViewBag.questionNum)</h2>
 
-<p>@Content</p>
+<p>@Model.Content</p>
 <div class="answer">
-    <div>A: @AnswerA</div>
-    <div>B: @AnswerB</div>
-    <div>C: @AnswerC</div>
-    <div>D: @AnswerD</div>
+    <div>A: @Model.AnswerA</div>
+    <div>B: @Model.AnswerB</div>
+    <div>C: @Model.AnswerC</div>
+    <div>D: @Model.AnswerD</div>
 </div>
 
 @{
