@@ -1,0 +1,23 @@
+<resources>
+    <!-- TODO: <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>-->
+     <!-- General -->
+    <string name="app_name">QuizClash</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="menu_instruction">Instruction</string>
+
+    <!-- Title Activity -->
+    <string name="title_btn_begin">Begin!</string>
+    <string name="title_to_begin_text">To begin playing, press the button below</string>
+
+
+    <!-- Instruction Activity -->
+    <string name="instruction_text">Quizclash is a wonderful game which will allow you to not only check your knowledge, but also gain in-depth understanding of scrum.
+    To start playing, simply click \'begin\' button.</string>
+    <string name="title_activity_instruction">Instruction</string>
+
+    <!-- Question Activity -->
+    <string name="question_button_send">Send</string>
+    <string name="title_activity_question">Question</string>
+
+</resources>
