@@ -22,10 +22,14 @@
             $(this).addClass('selected');
         });
 
-        $('.submit').click(function() {
+        $('.submit').click(function () {
+            if ($('.selected').length == 0) {
+                return;
+            }
             $('.answer > div').eq(@Model.CorrectAnswer-1).addClass('correct');
             $('.next_question').show();
             $('.submit').hide();
+            $('.answer > div').off('click');
         });
     });
 </script>
