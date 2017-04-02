@@ -8,11 +8,18 @@
     string AnswerB = Model.ToList()[0].AnswerB;
     string AnswerC = Model.ToList()[0].AnswerC;
     string AnswerD = Model.ToList()[0].AnswerD;
+    int CorrectAnswer = Model.ToList()[0].CorrectAnswer;
+
+    bool answered = false;
 }
 
 <style>
     .selected {
         background-color: orange;
+    }
+
+    .correct {
+        background-color: green;
     }
 </style>
 
@@ -21,6 +28,12 @@
         $('.answer > div').click(function() {
             $('.answer > div').removeClass('selected');
             $(this).addClass('selected');
+        });
+
+        $('.submit').click(function() {
+            $('.answer > div').eq(@CorrectAnswer-1).addClass('correct');
+            $('.next_question').show();
+            $('.submit').hide();
         });
     });
 </script>
@@ -36,17 +49,25 @@
 </div>
 
 @{
-    if (ViewBag.questionNum < 10)
-    {
-        <button onclick="window.location.href='@Url.Action("Single//" +
-        @Html.Raw(ViewBag.questionNum + 1),"Questions")'">
-            Submit
-        </button>
-    }
-    else
-    {
-        <button onclick="window.location.href='@Url.Action("End","Questions")'">
-            Finish
-        </button>
-    }
+    <button class="submit">
+        Submit Answer
+    </button>
 }
+
+<div class="next_question" style="display:none">
+    @{
+        if (ViewBag.questionNum < 10)
+        {
+            <button onclick="window.location.href='@Url.Action("Single//" +
+@Html.Raw(ViewBag.questionNum + 1), "Questions")'">
+                Next Question
+            </button>
+        }
+        else
+        {
+            <button onclick="window.location.href='@Url.Action("End", "Questions")'">
+                Finish
+            </button>
+        }
+    }
+</div>
