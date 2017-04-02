@@ -1,4 +1,5 @@
-﻿@model IEnumerable<QuizClash.Models.Question>
+﻿@Scripts.Render("~/bundles/jquery")
+@model IEnumerable<QuizClash.Models.Question>
 
 @{
     ViewBag.Title = "Question";
@@ -9,13 +10,30 @@
     string AnswerD = Model.ToList()[0].AnswerD;
 }
 
+<style>
+    .selected {
+        background-color: orange;
+    }
+</style>
+
+<script>
+    $(document).ready(function() {
+        $('.answer > div').click(function() {
+            $('.answer > div').removeClass('selected');
+            $(this).addClass('selected');
+        });
+    });
+</script>
+
 <h2>Question nr @Html.Raw(ViewBag.questionNum)</h2>
 
 <p>@Content</p>
-<p>A: @AnswerA</p>
-<p>B: @AnswerB</p>
-<p>C: @AnswerC</p>
-<p>D: @AnswerD</p>
+<div class="answer">
+    <div>A: @AnswerA</div>
+    <div>B: @AnswerB</div>
+    <div>C: @AnswerC</div>
+    <div>D: @AnswerD</div>
+</div>
 
 @{
     if (ViewBag.questionNum < 10)
