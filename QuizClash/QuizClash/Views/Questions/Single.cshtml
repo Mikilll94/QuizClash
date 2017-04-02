@@ -17,5 +17,18 @@
 <p>C: @AnswerC</p>
 <p>D: @AnswerD</p>
 
-<button onclick="window.location.href='@Url.Action("Single//" +
-        @Html.Raw(ViewBag.questionNum + 1),"Questions")'">Submit</button>
+@{
+    if (ViewBag.questionNum < 10)
+    {
+        <button onclick="window.location.href='@Url.Action("Single//" +
+        @Html.Raw(ViewBag.questionNum + 1),"Questions")'">
+            Submit
+        </button>
+    }
+    else
+    {
+        <button onclick="window.location.href='@Url.Action("End","Questions")'">
+            Finish
+        </button>
+    }
+}

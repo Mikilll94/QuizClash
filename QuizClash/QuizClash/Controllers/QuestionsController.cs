@@ -28,6 +28,11 @@ namespace QuizClash
             return View(db.Questions.Where(x => x.Id == randomQuestionNr).ToList());
         }
 
+        public ActionResult End()
+        {
+            return View();
+        }
+
         // GET: Questions/Details/5
         public ActionResult Details(int? id)
         {
