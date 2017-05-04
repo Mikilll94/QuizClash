@@ -12,6 +12,13 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
 import com.example.samsung.quizclash.api.Question;
 
 
@@ -33,6 +40,47 @@ public class QuestionActivity extends Activity {
 
         bindElements();
         createDummyQuestion();
+
+// Instantiate the RequestQueue.
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url ="http://www.google.com";
+
+// Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(final String response) {
+                        // Display the first 50 characters of the response string.
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(QuestionActivity.this,
+                                        "Response is: "+ response.substring(0,50),
+                                        Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(QuestionActivity.this,
+                                "That didn't work!",
+                                Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+        });
+// Add the request to the RequestQueue.
+        queue.add(stringRequest);
+
+
+
+
+
         //TODO:: method getting question from server
         // getQuestion();
         populateActivity();
