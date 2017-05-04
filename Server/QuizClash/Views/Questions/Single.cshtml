@@ -1,18 +1,17 @@
 ﻿@Scripts.Render("~/bundles/jquery")
-@model IEnumerable<QuizClash.Models.Question>
+@model QuizClash.Models.Question
 
 @{
     ViewBag.Title = "Question";
-    string Content = Model.ToList()[0].Content;
-    string AnswerA = Model.ToList()[0].AnswerA;
-    string AnswerB = Model.ToList()[0].AnswerB;
-    string AnswerC = Model.ToList()[0].AnswerC;
-    string AnswerD = Model.ToList()[0].AnswerD;
 }
 
 <style>
     .selected {
         background-color: orange;
+    }
+
+    .correct {
+        background-color: green;
     }
 </style>
 
@@ -22,31 +21,49 @@
             $('.answer > div').removeClass('selected');
             $(this).addClass('selected');
         });
+
+        $('.submit').click(function () {
+            if ($('.selected').length == 0) {
+                return;
+            }
+            $('.answer > div').eq(@Model.CorrectAnswer-1).addClass('correct');
+            $('.next_question').show();
+            $('.submit').hide();
+            $('.answer > div').off('click');
+        });
     });
 </script>
 
 <h2>Question nr @Html.Raw(ViewBag.questionNum)</h2>
 
-<p>@Content</p>
+<p>@Model.Content</p>
 <div class="answer">
-    <div>A: @AnswerA</div>
-    <div>B: @AnswerB</div>
-    <div>C: @AnswerC</div>
-    <div>D: @AnswerD</div>
+    <div>A: @Model.AnswerA</div>
+    <div>B: @Model.AnswerB</div>
+    <div>C: @Model.AnswerC</div>
+    <div>D: @Model.AnswerD</div>
 </div>
 
 @{
-    if (ViewBag.questionNum < 10)
-    {
-        <button onclick="window.location.href='@Url.Action("Single//" +
-        @Html.Raw(ViewBag.questionNum + 1),"Questions")'">
-            Submit
-        </button>
-    }
-    else
-    {
-        <button onclick="window.location.href='@Url.Action("End","Questions")'">
-            Finish
-        </button>
-    }
+    <button class="submit">
+        Submit Answer
+    </button>
 }
+
+<div class="next_question" style="display:none">
+    @{
+        if (ViewBag.questionNum < 10)
+        {
+            <button onclick="window.location.href='@Url.Action("Single//" +
+@Html.Raw(ViewBag.questionNum + 1), "Questions")'">
+                Next Question
+            </button>
+        }
+        else
+        {
+            <button onclick="window.location.href='@Url.Action("End", "Questions")'">
+                Finish
+            </button>
+        }
+    }
+</div>
