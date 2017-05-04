@@ -9,3 +9,4 @@ Version of app for first sprint available [a here](https://appetize.io/app/bahnr
 - tutorial [a here](http://stackoverflow.com/questions/29016760/visual-studio-2013-debug-using-ip-address-instead-of-localhost)
 differences: if your windows is polish, 'user=wszyscy' instead of 'user=everyone'
 - don't forget to add an incoming rule to firewall (in my case port is 50346)
+- server can be accessed by <computer ipv4 address>:<port> from device
